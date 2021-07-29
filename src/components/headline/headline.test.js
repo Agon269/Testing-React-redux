@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import HeadLine from "./index";
 
-import { findByTestAtrr } from "./../../utils/index";
+import { findByTestAtrr, checkProps } from "./../../utils/index";
 
 const setUp = (props = {}) => {
   const component = shallow(<HeadLine {...props} />);
@@ -10,24 +10,26 @@ const setUp = (props = {}) => {
 };
 
 describe("Headline Component", () => {
+  describe("Checking proptypes", () => {
+    it("Should not throw a warning", () => {});
+  });
+
   describe("Have Props", () => {
-    let wrapper;
-    beforeEach(() => {
-      const props = { header: "Hello", desc: "Test description" };
-      wrapper = setUp(props);
-    });
-    it("Should render with out errors", () => {
-      const component = findByTestAtrr(wrapper, "headLine");
-      expect(component.length).toBe(1);
-    });
-    it("Shold render an h1", () => {
-      const component = findByTestAtrr(wrapper, "header");
-      expect(component.length).toBe(1);
-    });
-    it("Shold render an description", () => {
-      const component = findByTestAtrr(wrapper, "desc");
-      expect(component.length).toBe(1);
-    });
+    const expectedProps = {
+      header: "test",
+      desc: "Test description",
+      tempArr: [
+        {
+          fName: "test",
+          lName: "Test",
+          email: "test@test.com",
+          age: 24,
+          onlineStatus: false,
+        },
+      ],
+    };
+    const propsErr = checkProps(HeadLine, expectedProps);
+    expect(propsErr).toBe(undefined);
   });
 
   describe("Have No Props", () => {
