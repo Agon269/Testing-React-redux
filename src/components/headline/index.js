@@ -13,6 +13,7 @@ const HeadLine = ({ header, desc }) => {
   );
 };
 
+//not the imported liberary
 HeadLine.propTypes = {
   header: PropTypes.string,
   desc: PropTypes.string,

@@ -9,9 +9,11 @@ const setUp = (props = {}) => {
 
 describe("Header Component", () => {
   let component;
+  //before each test it defines the component
   beforeEach(() => {
     component = setUp();
   });
+  //component.debug() = renders component on log
   it("Should render without errors", () => {
     const wrapper = findByTestAtrr(component, "headerComponent");
     expect(wrapper.length).toBe(1);
